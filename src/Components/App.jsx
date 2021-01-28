@@ -2,7 +2,8 @@ import React from "react";
 import Header from "./Header";
 import Home from "./Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Player from "./Player";
+import Profile from "./Profile";
+import NotFound from "./NotFound";
 
 function App() {
   return (
@@ -11,8 +12,8 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/player/:playerID" component={Player} />
-          <Route render={() => <h3>Not Found</h3>} />
+          <Route path="/player/:playerID" component={Profile} />
+          <Route component={NotFound} />
         </Switch>
       </Router>
     </div>

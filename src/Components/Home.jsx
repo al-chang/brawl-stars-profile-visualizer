@@ -1,15 +1,13 @@
 import React from "react";
 import SearchBar from "./SearchBar";
-import Chart from "./Chart";
+import { Container } from "@material-ui/core";
 
 function Home() {
-
-
-
-
   return (
     <div>
-      <SearchBar />
+      <Container maxWidth="sm">
+        <SearchBar />
+      </Container>
     </div>
   );
 }

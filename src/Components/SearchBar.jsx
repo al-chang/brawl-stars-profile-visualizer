@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
 import { Redirect } from "react-router-dom";
+import { FilledInput } from "@material-ui/core";
 
-function SearchBar(props) {
+function SearchBar() {
   const [inputText, setInputText] = useState("");
   const [showHidden, setShowHidden] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -18,20 +18,39 @@ function SearchBar(props) {
     }
   };
 
+  const style = {
+    color: "#ffffff",
+    "margin-bottom": "50px",
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="form">
-      <OutlinedInput
-        onChange={updateInputText}
-        value={inputText}
-        autoFocus={true}
-      />
-      <br />
-      <Button type="submit" variant="containted" color="primary">
-        Search
-      </Button>
-      {showHidden && <p>Please enter a user ID.</p>}
-      {submitted ? <Redirect push to={`/player/${inputText.replace("#", "")}`} /> : null}
-    </form>
+    <div className="center container">
+      <form onSubmit={handleSubmit} className="form">
+        <FilledInput
+          onChange={updateInputText}
+          value={inputText}
+          autoFocus={true}
+          style={style}
+          placeholder="Enter User ID"
+        />
+        <br />
+        <Button
+          style={style}
+          color="primary"
+          type="submit"
+          variant="containted"
+        >
+          Search
+        </Button>
+
+        {showHidden && (
+          <p style={{ color: "#ffffff" }}>Please enter a user ID.</p>
+        )}
+        {submitted ? (
+          <Redirect push to={`/player/${inputText.replace("#", "")}`} />
+        ) : null}
+      </form>
+    </div>
   );
 }
 

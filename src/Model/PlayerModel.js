@@ -1,22 +1,38 @@
 class PlayerModel {
   constructor(data) {
+    // The number of 3 v3 victories
     this.victories = data["3vs3Victories"];
+    // The player battle log
     this.battles = data.battles;
+    // Best time in roboRumble, integer
     this.roboRumbleTime = data.bestRoboRumbleTime;
+    // Best time as big brawler, integer
     this.bigBrawlerTime = data.bestTimeAsBigBrawler;
+    // Array of brawlers the player owns
     this.brawlers = data.brawlers;
+    // Object with .name and .tag
     this.club = data.club;
+    // Number of duo victories, integer
     this.duoVictories = data.duoVictories;
+    // Experience level, integer
     this.expLevel = data.expLevel;
+    // Experience points, integer
     this.expPoints = data.expPoints;
     this.highestPowerPlayPoints = data.highestPowerPlayPoints;
+    // Object with .id
     this.icon = data.icon;
+    // Boolean
     this.isQualifiedFromChampionshipChallenge =
       data.isQualifiedFromChampionshipChallenge;
+    // Name of the player, string
     this.name = data.name;
+    // Color of the player name, string
     this.nameColor = data.nameColor;
+    // Number of solo victories, integer
     this.soloVictories = data.soloVictories;
+    // Player game tag, string
     this.tag = data.tag;
+    // Number of current trophies, integer
     this.trophies = data.trophies;
   }
 
@@ -33,6 +49,31 @@ class PlayerModel {
     return gamesStarPlayer;
   }
 
+  // Return recent game modes as a javascript object where gamemode: #games
+  RecentGameModes() {
+    let gameModes = {};
+    this.battles.forEach((game) => {
+      let gameMode = game.event.mode;
+      if (gameMode in gameModes) {
+        gameModes[gameMode] += 1;
+      } else {
+        gameModes[gameMode] = 1;
+      }
+    });
+    return gameModes;
+  }
+
+  // Return trophies for each brawler, to use split the array down the middle 
+  GetBrawlersTrophies() {
+    let brawlers = [];
+    let trophies = [];
+    this.brawlers.forEach((brawler) => {
+      brawlers.push(brawler.name);
+      trophies.push(brawler.trophies);
+    });
+    return [...brawlers, ...trophies];
+  }
+
   // Determine the number of games the player has recently won, out of their total number of games
   NumberWins() {
     let wins = 0;
@@ -41,7 +82,7 @@ class PlayerModel {
         wins += 1;
       }
     });
-    return wins;
+    return [wins, this.battles.length];
   }
 
   // Recently played brawlers

@@ -1,9 +1,15 @@
 import React from "react";
 
-function Header(props) {
-  return <div>
-      <h3>Brawl Analysis</h3>
-  </div>;
+function Header() {
+  return (
+    <div className="header">
+      <a href="/" style={{textDecoration:"none", color:"#ffffff"}}>
+        <h2 className="title">
+          Brawl<span style={{ color: "#f21101" }}>Alytics</span>
+        </h2>
+      </a>
+    </div>
+  );
 }
 
 export default Header;
