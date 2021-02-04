@@ -36,6 +36,21 @@ class PlayerModel {
     this.trophies = data.trophies;
   }
 
+  // Determine a players trophies over time based on the battle log data and current trophy count 
+  TrophiesOverTime() {
+    let currentCount = this.trophies;
+    let trophies = [currentCount];
+    this.battles.forEach((game) => {
+      if ("trophyChange" in game.battle) {
+        currentCount -= game.battle.trophyChange;
+        trophies = [currentCount, ...trophies];
+      } else {
+        trophies = [currentCount, ...trophies];
+      }
+    });
+    return trophies;
+  }
+
   // Determine the number of games a player has been awarded star player out of their recent games
   StarPlayerCount() {
     let gamesStarPlayer = 0;
