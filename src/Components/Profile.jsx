@@ -14,7 +14,7 @@ function Profile({ match }) {
   const loadNewUser = (inputText) => {
     axios
       .get("/playerData/" + inputText)
-      .then((response) => setPlayerModel(new PlayerModel(response.data)))
+      .then((response) => setPlayerModel(response.data))
       .catch(() => setRedirect404(true));
   };
 
