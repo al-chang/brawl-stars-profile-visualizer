@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 function NotFound() {
-    return <h3>404 Page Not Found</h3>;
-} 
+  return (
+    <div>
+      <h3>404 Page Not Found</h3>
+      <a href="/">Return to search</a>
+    </div>
+  );
+}
 
 export default NotFound;

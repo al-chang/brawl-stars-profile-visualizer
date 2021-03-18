@@ -8,7 +8,7 @@ function Player(props) {
 
   return (
     <div>
-      <Grid container spacing={3}>
+      <Grid container spacing={4} style={{width: "100%", paddingLeft: "10%", paddingRight: "10%"}}>
         <Grid item xs={12}>
           <PlayerCard player={props.player} />
         </Grid>

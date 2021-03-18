@@ -97,7 +97,7 @@ class PlayerModel {
         wins += 1;
       }
     });
-    return [wins, this.battles.length];
+    return [wins, this.battles.length - wins];
   }
 
   // Recently played brawlers
