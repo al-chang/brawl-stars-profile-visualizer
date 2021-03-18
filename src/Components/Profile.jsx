@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import PlayerModel from "../Model/PlayerModel";
 import Player from "./Player";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import TestData from "../test-data.json";
+import _ from "lodash"
 
 function Profile({ match }) {
   const [playerModel, setPlayerModel] = useState(null);
@@ -19,7 +19,9 @@ function Profile({ match }) {
   };
 
   useEffect(() => {
-    loadNewUser(match.params.playerID);
+    let id = _.replace(_.toUpper(match.params.playerID), ' ', '');
+    console.log(id);
+    loadNewUser(id);
 
     //setPlayerModel(new PlayerModel(TestData));
   }, []);
