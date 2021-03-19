@@ -3,7 +3,7 @@ import Player from "./Player";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import TestData from "../test-data.json";
-import _ from "lodash"
+import _ from "lodash";
 
 function Profile({ match }) {
   const [playerModel, setPlayerModel] = useState(null);
@@ -19,7 +19,7 @@ function Profile({ match }) {
   };
 
   useEffect(() => {
-    let id = _.replace(_.toUpper(match.params.playerID), ' ', '');
+    let id = _.replace(_.toUpper(match.params.playerID), " ", "");
     loadNewUser(id);
 
     //setPlayerModel(new PlayerModel(TestData));
@@ -27,11 +27,7 @@ function Profile({ match }) {
 
   return (
     <div>
-      {playerModel != null ? (
-        <Player player={playerModel} />
-      ) : (
-        <h1>Loading</h1>
-      )}
+      {playerModel != null ? <Player player={playerModel} /> : <h1>Loading</h1>}
       {redirect404 && <Redirect push to="/404" />}
     </div>
   );

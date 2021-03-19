@@ -1,13 +1,22 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 import PlayerCard from "./PlayerCard";
-import { WinLose, GameModes, RecentBrawlers, BrawlerTrophies, TrophiesOverTime } from "./Graphs";
+import {
+  WinLose,
+  GameModes,
+  RecentBrawlers,
+  BrawlerTrophies,
+  TrophiesOverTime,
+} from "./Graphs";
 
 function Player(props) {
-
   return (
     <div>
-      <Grid container spacing={4} style={{width: "100%", paddingLeft: "10%", paddingRight: "10%"}}>
+      <Grid
+        container
+        spacing={4}
+        style={{ width: "100%", paddingLeft: "10%", paddingRight: "10%" }}
+      >
         <Grid item xs={12}>
           <PlayerCard player={props.player} />
         </Grid>

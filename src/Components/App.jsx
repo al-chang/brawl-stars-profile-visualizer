@@ -4,6 +4,7 @@ import Home from "./Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Profile from "./Profile";
 import NotFound from "./NotFound";
+import Battlelog from "./Battlelog";
 
 function App() {
   return (
@@ -12,7 +13,12 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/player/:playerID" component={Profile} />
+          <Route path="/player/:playerID" exact component={Profile} />
+          <Route
+            path="/player/:playerID/battlelog"
+            exact
+            component={Battlelog}
+          />
           <Route component={NotFound} />
         </Switch>
       </Router>
