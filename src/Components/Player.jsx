@@ -1,15 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
 import PlayerCard from "./PlayerCard";
-import {
-  WinLose,
-  GameModes,
-  RecentBrawlers,
-  BrawlerTrophies,
-  TrophiesOverTime,
-} from "./Graphs";
+import Battlelog from "./Battlelog";
+import GraphLayout from "./GraphLayout";
 
 function Player(props) {
+  const [statsOrLog, setStatsOrLog] = useState(true);
+
   return (
     <div>
       <Grid
@@ -20,22 +17,13 @@ function Player(props) {
         <Grid item xs={12}>
           <PlayerCard player={props.player} />
         </Grid>
-        <Grid item xs={12} sm={4}>
-          <GameModes gameModes={props.player.recentGameModes} />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <WinLose winLose={props.player.winLose} />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <RecentBrawlers recentBrawlers={props.player.recentBrawlers} />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <BrawlerTrophies brawlerData={props.player.brawlerData} />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TrophiesOverTime trophiesOverTime={props.player.trophiesOverTime} />
-        </Grid>
       </Grid>
+      <button onClick={() => setStatsOrLog(!statsOrLog)} />
+      {statsOrLog ? (
+        <GraphLayout player={props.player} />
+      ) : (
+        <Battlelog battles={props.player.items} />
+      )}
     </div>
   );
 }

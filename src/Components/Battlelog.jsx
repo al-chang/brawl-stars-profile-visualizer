@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import _ from "lodash";
-import PlayerCard from "./PlayerCard";
 import { Grid } from "@material-ui/core";
 import nameToImage from "../nameToImage";
 
@@ -17,7 +15,12 @@ function PlayerList(props) {
   const players = [];
   props.team.forEach((player) => {
     players.push(
-      <Grid container item alignItems="center" style={{backgroundColor: "red"}}>
+      <Grid
+        container
+        item
+        alignItems="center"
+        style={{ backgroundColor: "red" }}
+      >
         <Grid
           item
           xs={4}
@@ -29,7 +32,12 @@ function PlayerList(props) {
             src={"/images/profile/" + nameToImage[player.brawler.name] + ".png"}
           ></img>
         </Grid>
-        <Grid item xs={8} style={{ paddingTop: "2%", paddingBottom: "2%" }} alignItems="center">
+        <Grid
+          item
+          xs={8}
+          style={{ paddingTop: "2%", paddingBottom: "2%" }}
+          alignItems="center"
+        >
           <p style={label}>Username:</p>
           <p style={information}>
             <a
@@ -56,8 +64,6 @@ function PlayerList(props) {
 }
 
 function Battle(props) {
-
-    console.log(props.battle);
   return (
     <Grid
       container
@@ -86,7 +92,7 @@ function Battle(props) {
 
 function Log(props) {
   const playerBattles = [];
-  props.battlelog.battles.items.forEach((battle) => {
+  props.battlelog.forEach((battle) => {
     playerBattles.push(<Battle battle={battle} />);
   });
 
@@ -96,35 +102,15 @@ function Log(props) {
       spacing={4}
       style={{ width: "100%", paddingLeft: "10%", paddingRight: "10%" }}
     >
-      <Grid item xs={12}>
-        <PlayerCard player={props.battlelog} />
-      </Grid>
       {playerBattles}
     </Grid>
   );
 }
 
-function Battlelog({ match }) {
-  const [playerModel, setPlayerModel] = useState(null);
-  const [redirect404, setRedirect404] = useState(false);
-
-  const loadNewUser = (inputText) => {
-    axios
-      .get("/playerData/" + inputText + "/battlelog")
-      .then((response) => {
-        setPlayerModel(response.data);
-      })
-      .catch(() => setRedirect404(true));
-  };
-
-  useEffect(() => {
-    let id = _.replace(_.toUpper(match.params.playerID), " ", "");
-    loadNewUser(id);
-  }, []);
-
+function Battlelog(props) {
   return (
     <div>
-      {playerModel != null ? <Log battlelog={playerModel} /> : <h1>Loading</h1>}
+      <Log battlelog={props.battles} />
     </div>
   );
 }
