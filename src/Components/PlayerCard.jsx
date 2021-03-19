@@ -55,6 +55,7 @@ function PlayerCard(props) {
             margin: "auto",
             display: "block",
             paddingTop: "20%",
+            paddingBottom: "20%"
           }}
         />
       </Grid>
@@ -97,8 +98,8 @@ function PlayerCard(props) {
         item1={props.player.bestTimeAsBigBrawler}
         label2={"Robo Rumble Time"}
         item2={props.player.bestRoboRumbleTime}
-        label3={"Player tag"}
-        item3={props.player.tag}
+        label3={"Times Star Player"}
+        item3={props.player.starPlayerCount}
       />
     </Grid>
   );
