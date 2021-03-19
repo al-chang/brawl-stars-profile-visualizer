@@ -20,7 +20,6 @@ function Profile({ match }) {
 
   useEffect(() => {
     let id = _.replace(_.toUpper(match.params.playerID), ' ', '');
-    console.log(id);
     loadNewUser(id);
 
     //setPlayerModel(new PlayerModel(TestData));
